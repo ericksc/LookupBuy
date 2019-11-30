@@ -25,7 +25,6 @@ N = np.random.randint(5,10)
 def get_current_time():
     return datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
 
-
 def generate_products():
     return np.random.choice(a=products, size=N)
 
@@ -36,7 +35,7 @@ def generate_date():
     return np.random.choice(pd.date_range('20000101', periods=5000))
 
 def generate_prices():
-    return np.random.uniform(low=1000, high=10000, size=N)
+    return np.around(np.random.uniform(low=1000, high=10000, size=N), decimals=2, out=None)
 
 def create_dataframe():
     return pd.DataFrame({
