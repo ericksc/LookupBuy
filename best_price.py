@@ -39,7 +39,9 @@ def rellenado(item):
         lugar = otro_elemento.name[1]
         fecha = otro_elemento.name[0]
         producto = otro_elemento.index[0]
-        fecha_numero = dia_to_ndia(datetime.datetime.strptime(fecha, '%Y-%m-%d'))
+
+        # Predicción usando la fecha de hoy
+        fecha_numero = dia_to_ndia(datetime.datetime.today())
         # producto, fecha, lugar -> fit "predecir" ----> numero (float)
         dato = obtener_precio(producto, lugar, fecha_numero)
         return pd.Series(dato)
@@ -98,8 +100,6 @@ def best_price_by_list(data, lista):
 
     # quitar un nivel. quitar el nivel de las fechas
     selection = selection.droplevel(level=0, axis=1)
-
-    #selection = selection.fillna(100)
 
     res = (
         selection.apply(review, axis=0)
